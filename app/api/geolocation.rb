@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
 class Geolocation < Grape::API
-  desc 'End-points for the Login'
+  desc 'Endpoints for Geolocation'
 
   namespace :geolocation do
-    desc 'Manage geolocation data'
+    desc 'Get geolocation data'
     params do
       requires :address, type: String, desc: 'address'
     end
@@ -19,7 +19,7 @@ class Geolocation < Grape::API
       end
     end
 
-    desc 'Remove ip from system'
+    desc 'Remove address from system'
     params do
       requires :address, type: String, desc: 'address'
     end
