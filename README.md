@@ -1,24 +1,47 @@
-# README
+***Setup***
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+To run this project
 
-Things you may want to cover:
+```
+cp .example_env .env
+```
 
-* Ruby version
+put your IPSTACK_ACCESS_KEY, and preferred credentials in `.env` file
 
-* System dependencies
+```
+sudo DOCKER_BUILDKIT=0 docker-compose up -d --build
+sudo docker ps
+```
 
-* Configuration
+find container ID od assignment-app and run
 
-* Database creation
+```
+sudo docker exec -it <ID> bash
+```
 
-* Database initialization
+and then
 
-* How to run the test suite
+```
+RAILS_ENV=production bundle exec rake db:create db:schema:load
+RAILS_ENV=production bundle exec rake db:migrate
+```
 
-* Services (job queues, cache servers, search engines, etc.)
+Please be cautious, since for the sake of testing production on localhost (which, I suspect will be the case here) ``config.force_ssl`` is set to ``false``
 
-* Deployment instructions
+***Assumptions***
 
-* ...
+I made this API using Rails and Grape, which is a lightweight framework for building REST-like APIs. It's conventions are really simple and overall I think it's a great addition to every API-based RoR project.
+
+In developer-client environment, I would strongly suggest to proceed with this project as it is:
+
+- One GET request for retrieving geolocation data from the Ipstack API and caching/storing it in Postgres
+- One DELETE request for removing any previously saved data
+
+***Not finished parts***
+
+I wish I had more time to do a whole lot of testing. Unfortunately I had a really rough week and my time is strongly limited. 
+
+For what it's worth, I created a basic setup with FactoryBot and RSpec.
+
+Originally I planned to use Casette for recording/mocking all http communication with Ipstack.
+

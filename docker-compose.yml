@@ -1,0 +1,35 @@
+version: '3.4'
+
+services:
+  app:
+    command: bundle exec rails s -p 3000 -b '0.0.0.0'
+    build:
+      context: .
+      dockerfile: Dockerfile
+    depends_on:
+      - database
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/assignment
+    env_file: .env
+    environment:
+      RAILS_ENV: production
+      POSTGRES_URL: localhost
+    networks:
+      - assignment
+
+  database:
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    image: postgres:12.1
+    env_file: .env
+    networks:
+      - assignment
+
+volumes:
+  db_data:
+
+networks:
+  assignment:
+    driver: bridge
