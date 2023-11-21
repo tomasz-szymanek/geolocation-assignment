@@ -37,6 +37,8 @@ In developer-client environment, I would strongly suggest to proceed with this p
 - One GET request for retrieving geolocation data from the Ipstack API and caching/storing it in Postgres
 - One DELETE request for removing any previously saved data
 
+Code is checked using custom Rubocop config.
+
 ***Not finished parts***
 
 I wish I had more time to do a whole lot of testing. Unfortunately I had a really rough week and my time is strongly limited. 
@@ -44,4 +46,10 @@ I wish I had more time to do a whole lot of testing. Unfortunately I had a reall
 For what it's worth, I created a basic setup with FactoryBot and RSpec.
 
 Originally I planned to use Casette for recording/mocking all http communication with Ipstack.
+
+**Code***
+
+Main business logic lies in services in ``services`` dir. 
+``api`` dir contains endpoints and simple validation
+
 
