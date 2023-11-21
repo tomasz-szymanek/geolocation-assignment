@@ -26,7 +26,7 @@ RAILS_ENV=production bundle exec rake db:create db:schema:load
 RAILS_ENV=production bundle exec rake db:migrate
 ```
 
-Please be cautious, since for the sake of testing production on localhost (which, I suspect will be the case here) ``config.force_ssl`` is set to ``false``
+Please be cautious, since for the sake of testing production mode on localhost (which, I suspect will be the case here) ``config.force_ssl`` is set to ``false``
 
 **Assumptions**
 
